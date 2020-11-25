@@ -197,10 +197,9 @@ class ProbeWidget extends PureComponent {
 
                 // Set the WCS 0 offset
                 gcode(`; Set the active WCS ${probeAxis}0`),
-                gcode('G10', {
-                    L: 20,
-                    P: mapWCSToP(wcs),
-                    [probeAxis]: touchPlateHeight
+                gcode(mapWCSToP(wcs)),
+                gcode('G92', {
+                    [probeAxis]: touchPlateHeight,
                 }),
 
                 // Retract from the touch plate (use relative distance mode)
